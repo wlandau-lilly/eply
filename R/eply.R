@@ -1,13 +1,15 @@
 #' @export
-eply = function(.function = NULL, .variables = NULL, .values = NULL){
+eply = function(.fun = NULL, .args = NULL){
   
   # formalArgs(.function) gets the args of .function
 
 if(F){
 
-  apply(.values, 1, function(x){
+  apply(.args, 1, function(x){
+    .evals = Vectorize(function(y) eval(parse(text = y)), "y")(x)
     
-    "arguments" = lapply(x, function(y) eval(parse(text = y)))
+
+#    "arguments" = lapply(x, function(y) eval(parse(text = y)))
     
 # evaluate .function with argument list "arguments"  
 
