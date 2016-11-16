@@ -9,6 +9,8 @@ Description: Evaluate a function over multiple arbitrary values
 License: file LICENSE
 Depends:
     R (>= 3.0.0)
+Imports:
+    methods
 Suggests:
     testthat
 RoxygenNote: 5.0.1

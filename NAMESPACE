@@ -3,3 +3,4 @@
 export(eply)
 export(eval_text)
 export(strings)
+importFrom(methods,formalArgs)
