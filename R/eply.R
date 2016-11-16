@@ -1,4 +1,9 @@
 #' @export
+eval_text = Vectorize(function(x){
+  eval(parse(text = x))
+}, "x", SIMPLIFY = FALSE)
+
+#' @export
 eply = function(.fun = NULL, .args = NULL){
   
   # formalArgs(.function) gets the args of .function
@@ -6,7 +11,8 @@ eply = function(.fun = NULL, .args = NULL){
 if(F){
 
   apply(.args, 1, function(x){
-    .evals = Vectorize(function(y) eval(parse(text = y)), "y")(x)
+
+#    .evals = Vectorize(function(y) eval(parse(text = y)), "y")(x)
     
 
 #    "arguments" = lapply(x, function(y) eval(parse(text = y)))

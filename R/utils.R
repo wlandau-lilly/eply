@@ -1,3 +1,8 @@
+#' @export
+eval_text = Vectorize(function(x){
+  eval(parse(text = x))
+}, "x", SIMPLIFY = FALSE)
+
 #' @title Function \code{strings}
 #' @description Turns unquoted symbols into character strings.
 #' @export 
