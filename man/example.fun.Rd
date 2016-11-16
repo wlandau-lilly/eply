@@ -6,10 +6,18 @@
 \usage{
 example.fun(x, y)
 }
+\arguments{
+\item{x}{numeric argument}
+
+\item{y}{nonzero numeric argument}
+}
 \value{
 Example \code{.fun} argument to \code{\link{eply}}.
 }
 \description{
 Example \code{.fun} argument to \code{\link{eply}}.
+}
+\seealso{
+\code{\link{eply}}
 }
 

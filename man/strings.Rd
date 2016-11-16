@@ -15,4 +15,7 @@ a character vector
 \description{
 Turns unquoted symbols into character strings.
 }
+\seealso{
+\code{\link{eply}}
+}
 

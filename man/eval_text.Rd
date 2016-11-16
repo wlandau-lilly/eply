@@ -16,4 +16,7 @@ list of evaluated expressions
 Evaluate expressions encoded as
 elements of a character vector.
 }
+\seealso{
+\code{\link{eply}}
+}
 

@@ -1,5 +1,6 @@
 #' @title Function \code{strings}
 #' @description Turns unquoted symbols into character strings.
+#' @seealso \code{\link{eply}}
 #' @export 
 #' @return a character vector
 #' @param ... unquoted symbols to turn into character strings.

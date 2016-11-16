@@ -1,5 +1,6 @@
 #' @title \code{example.expr}
 #' @description Example \code{.expr} argument to \code{\link{eply}}.
+#' @seealso \code{\link{eply}}
 #' @export
 #' @return Example \code{.expr} argument to \code{\link{eply}}.
 example.expr = function(){expand.grid(
@@ -13,8 +14,11 @@ example.expr = function(){expand.grid(
 
 #' @title \code{example.fun}
 #' @description Example \code{.fun} argument to \code{\link{eply}}.
+#' @seealso \code{\link{eply}}
 #' @export
 #' @return Example \code{.fun} argument to \code{\link{eply}}.
+#' @param x numeric argument
+#' @param y nonzero numeric argument
 example.fun = function(x, y){
   mean(x/y)
 }

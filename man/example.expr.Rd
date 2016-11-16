@@ -12,4 +12,7 @@ Example \code{.expr} argument to \code{\link{eply}}.
 \description{
 Example \code{.expr} argument to \code{\link{eply}}.
 }
+\seealso{
+\code{\link{eply}}
+}
 

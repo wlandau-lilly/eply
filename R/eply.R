@@ -1,6 +1,7 @@
 #' @title Function \code{eval_text}
 #' @description Evaluate expressions encoded as
 #' elements of a character vector.
+#' @seealso \code{\link{eply}}
 #' @export
 #' @return list of evaluated expressions
 #' @param x character vector encoding unevaluated expressions
