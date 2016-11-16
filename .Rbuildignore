@@ -1,0 +1,7 @@
+README.md
+.Rhistory
+.RData
+.Ruserdata
+^.*\.Rproj$
+^\.Rproj\.user$
+.git
