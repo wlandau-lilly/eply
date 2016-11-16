@@ -2,5 +2,7 @@
 
 export(eply)
 export(eval_text)
+export(example.expr)
+export(example.fun)
 export(strings)
 importFrom(methods,formalArgs)
