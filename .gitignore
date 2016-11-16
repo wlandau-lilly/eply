@@ -3,3 +3,4 @@
 *.Ruserdata
 .Rproj.user
 inst/doc
+vignettes/eply.html
