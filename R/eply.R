@@ -31,15 +31,19 @@ eply = function(.fun, .expr, .split = NULL, .tasks = 1){
   serial = is.null(.split) | .tasks <= 1
   windows_warning = "Parallel execution not supported on Windows. Executing serially instead."
   using_windows = Sys.info()[['sysname']] == "Windows"
-  if(!serial & using_windows) print(windows_warning); serial = TRUE
-  if(serial) 
-    eply_serial(.fun = .fun, .expr = .expr) %>%
-    return
-  index = subset(.expr, select = .split, drop = FALSE) %>% 
-    apply(1, paste, collapse = "")
-  index = ordered(index, levels = unique(index))
-  split(x = .expr, f = index, drop = FALSE) %>%
-    mclapply(FUN = eply_serial, mc.cores = .tasks, .fun = .fun) %>%
-    unlist %>%
-    unname
+  if(!serial & using_windows){
+    warning(windows_warning)
+    serial = TRUE
+  }
+  if(serial){ 
+    eply_serial(.fun = .fun, .expr = .expr) 
+  } else {
+    index = subset(.expr, select = .split, drop = FALSE) %>% 
+      apply(1, paste, collapse = "")
+    index = ordered(index, levels = unique(index))
+    split(x = .expr, f = index, drop = FALSE) %>%
+      mclapply(FUN = eply_serial, mc.cores = .tasks, .fun = .fun) %>%
+      unlist %>%
+      unname
+  }
 }
