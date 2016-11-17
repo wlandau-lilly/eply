@@ -31,3 +31,11 @@ Each row is a function call. The elements are converted from text to expressions
 ```{r}
 eply(.fun = example.fun, .expr = example.expr())
 ```
+
+The `strings()` function can help make the `.expr` data frame.
+
+```{r}
+data.frame(
+  arg1 = strings(a + b, sqrt(x) - 2), 
+  arg2 = 1:2)
+```
