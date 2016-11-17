@@ -1,11 +1,11 @@
 Package: eply
 Type: Package
-Title: Apply a Function over Arbitrary Values
+Title: Apply a Function Over Expressions
 Version: 0.0.0.9000
 Authors@R: person(family = "Landau", given = "William", 
     email = "will.landau@lilly.com", role = c("aut", "cre"))
-Description: Evaluate a function over multiple arbitrary values
-    using expressions.
+Description: The eply function is a version of apply that 
+    accepts unevaluated expressions as data.
 License: file LICENSE
 Depends:
     R (>= 3.0.0)
