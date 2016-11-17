@@ -9,6 +9,9 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+
+# Basic usage
+
 ```{r}
 library(eply)
 ```
@@ -32,6 +35,8 @@ Each row is a function call. The elements are converted from text to expressions
 eply(.fun = example.fun, .expr = example.expr())
 ```
 
+# The `strings()` function
+
 The `strings()` function can help make the `.expr` data frame.
 
 ```{r}
@@ -39,3 +44,13 @@ data.frame(
   arg1 = strings(a + b, sqrt(x) - 2), 
   arg2 = 1:2)
 ```
+
+# Parallel execution
+
+For Mac and Linux users, `parallel::mclapply()` is leveraged to distribute the work over multiple parallel tasks.
+
+```{r, eval = F}
+eply(.fun = example.fun, .expr = example.expr(), .split = strings(y, rep), .tasks = 2)
+```
+
+Above, `.expr` is split into multiple pieces, one for each unique combination of `y` and `rep`. These pieces are processed in parallel (in this case, 2 at a time).
