@@ -10,7 +10,9 @@ License: file LICENSE
 Depends:
     R (>= 3.0.0)
 Imports:
-    methods
+    magrittr,
+    methods,
+    parallel
 Suggests:
     testthat,
     knitr,

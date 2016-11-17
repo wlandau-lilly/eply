@@ -19,7 +19,7 @@ to split over when executing parallel jobs.}
 
 \item{.tasks}{number of parallel units of execution. Splits of \code{.expr}
 according to the variables in \code{.split} are distributed over \code{.tasks}
-parallel units of execution using \code{\link{parallel::mclapply}}.}
+parallel units of execution using \code{parallel::mclapply}.}
 }
 \value{
 a list or vector of return values of \code{.fun}.
@@ -36,7 +36,7 @@ unevaluated expression. When \code{\link{eply}} is called, the expressions
 in each row of \code{.expr} are evaluated, and the results are given to 
 \code{.fun} as function arguments. The column names of \code{.expr} must
 contain the argument names of \code{.fun}.
-If \code{.tasks > 1} and \code{.split} is used, \code{\link{parallel::mclapply}}
+If \code{.tasks > 1} and \code{.split} is used, \code{parallel::mclapply}
 will be used to distribute the work over multiple parallel tasks, where tasks
 are split up according to the columns of \code{.expr} named in \code{.split}.
 }
