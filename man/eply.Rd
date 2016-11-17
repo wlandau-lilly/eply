@@ -4,7 +4,7 @@
 \alias{eply}
 \title{Function \code{eply}}
 \usage{
-eply(.fun = NULL, .expr = NULL)
+eply(.fun, .expr, .split = NULL, .tasks = 1)
 }
 \arguments{
 \item{.fun}{function to evaluate.}
@@ -13,12 +13,20 @@ eply(.fun = NULL, .expr = NULL)
 as columns. The elements are characters that encode unevaluated expressions.
 These expressions evaluate to function arguments of \code{.fun}. The argument
 names of \code{.fun} must be contained in the column names of \code{.expr}.}
+
+\item{.split}{character vector of columns of \code{.expr}
+to split over when executing parallel jobs.}
+
+\item{.tasks}{number of parallel units of execution. Splits of \code{.expr}
+according to the variables in \code{.split} are distributed over \code{.tasks}
+parallel units of execution using \code{\link{parallel::mclapply}}.}
 }
 \value{
 a list or vector of return values of \code{.fun}.
 }
 \description{
 Apply a function over a data frame of unevaluated expressions.
+Parallel execution is available using the \code{.split} and \code{.tasks} arguments.
 }
 \details{
 \code{.fun} is a function, and \code{.expr} is a data frame. 
@@ -28,5 +36,8 @@ unevaluated expression. When \code{\link{eply}} is called, the expressions
 in each row of \code{.expr} are evaluated, and the results are given to 
 \code{.fun} as function arguments. The column names of \code{.expr} must
 contain the argument names of \code{.fun}.
+If \code{.tasks > 1} and \code{.split} is used, \code{\link{parallel::mclapply}}
+will be used to distribute the work over multiple parallel tasks, where tasks
+are split up according to the columns of \code{.expr} named in \code{.split}.
 }
 
