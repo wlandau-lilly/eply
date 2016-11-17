@@ -13,7 +13,7 @@ vignette: >
 library(eply)
 ```
 
-The function `eply()` is like `apply()`, but with a data frame of arbitrary unevaluated expressions.
+The function `eply()` is like `apply()`, but with a data frame of unevaluated expressions.
 
 Begin with a function to apply iteratively.
 ```{r}
