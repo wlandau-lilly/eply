@@ -32,13 +32,12 @@ eval_text = Vectorize(FUN = function(x){
 #' @export
 #' @return \code{TRUE} if \code{\link{eply}} will run serially
 #' and \code{FALSE} if parallelized.
-#' @param .fun argument to \code{\link{eply}}
 #' @param .expr argument to \code{\link{eply}}
 #' @param .split argument to \code{\link{eply}}
 #' @param .tasks argument to \code{\link{eply}}
-#' @param os operating system
-is_serial = function(.fun, .expr, .split = NULL, .tasks = 1,
-  os = Sys.info()[['sysname']]){
+#' @param .os operating system
+is_serial = function(.expr, .split = NULL, .tasks = 1,
+  .os = Sys.info()[['sysname']]){
 
   # Sanitize individual arguments.
   if(.tasks < 1 | !is.numeric(.tasks))
@@ -48,17 +47,17 @@ is_serial = function(.fun, .expr, .split = NULL, .tasks = 1,
 
   # Resolve conflicts.
   if(.tasks > 1 & !length(.split)){
-    warning(".tasks > 1 but .split is empty. Executing serially.")
+    warning(".tasks > 1, but .split is empty. Executing serially.")
     .tasks = 1
   } else if(.tasks <= 1 & length(.split) > 0){
-    warning(".tasks == 1 but .split is nonempty. Executing serially.")
+    warning(".split is nonempty, but .tasks is 1. Executing serially.")
   }
 
   # Disable parallelism on Windows.
-  if(.tasks > 1 & os == "Windows"){
+  if(.tasks > 1 & .os == "Windows"){
     warning("Parallel execution not supported on Windows. Executing serially.")
     .tasks = 1
   }
 
-  .tasks > 1
+  .tasks <= 1
 }

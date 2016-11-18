@@ -24,7 +24,7 @@
 #' @param .tasks number of parallel tasks for distributing the work.
 #' See the vignette for an example \code{vignette("eply")}.
 eply = function(.fun, .expr, .split = NULL, .tasks = 1){
-  if(is_serial(.fun = .fun, .expr = .expr, .split = .split, .tasks = .tasks)){ 
+  if(is_serial(.expr = .expr, .split = .split, .tasks = .tasks)){ 
     eply_serial(.fun = .fun, .expr = .expr) 
   } else {
     index = subset(.expr, select = .split, drop = FALSE) %>% 
