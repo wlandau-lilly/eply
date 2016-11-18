@@ -24,18 +24,7 @@
 #' @param .tasks number of parallel tasks for distributing the work.
 #' See the vignette for an example \code{vignette("eply")}.
 eply = function(.fun, .expr, .split = NULL, .tasks = 1){
-  if(.tasks < 1 | !is.numeric(.tasks)) 
-    stop("Argument .tasks must be a number at least 1.")
-  if(!all(.split %in% colnames(.expr)))
-    stop("Argument .split must be a subset of colnames(.expr).") 
-  serial = is.null(.split) | .tasks <= 1
-  windows_warning = "Parallel execution not supported on Windows. Executing serially instead."
-  using_windows = Sys.info()[['sysname']] == "Windows"
-  if(!serial & using_windows){
-    warning(windows_warning)
-    serial = TRUE
-  }
-  if(serial){ 
+  if(is_serial(.fun = .fun, .expr = .expr, .split = .split, .tasks = .tasks)){ 
     eply_serial(.fun = .fun, .expr = .expr) 
   } else {
     index = subset(.expr, select = .split, drop = FALSE) %>% 
