@@ -4,19 +4,16 @@
 \alias{is_serial}
 \title{Function \code{is_serial}}
 \usage{
-is_serial(.fun, .expr, .split = NULL, .tasks = 1,
-  os = Sys.info()[["sysname"]])
+is_serial(.expr, .split = NULL, .tasks = 1, .os = Sys.info()[["sysname"]])
 }
 \arguments{
-\item{.fun}{argument to \code{\link{eply}}}
-
 \item{.expr}{argument to \code{\link{eply}}}
 
 \item{.split}{argument to \code{\link{eply}}}
 
 \item{.tasks}{argument to \code{\link{eply}}}
 
-\item{os}{operating system}
+\item{.os}{operating system}
 }
 \value{
 \code{TRUE} if \code{\link{eply}} will run serially
