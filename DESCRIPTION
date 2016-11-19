@@ -3,7 +3,7 @@ Type: Package
 Title: Apply a Function Over Expressions
 Version: 0.0.0.9000
 Date: 2016-11-19
-Authors@R: person(family = "Landau", given = "William", 
+Authors@R: person(family = "Landau", given = "Will", 
     email = "will.landau@lilly.com", role = c("aut", "cre"))
 Description: The eply function is a version of apply that 
     accepts unevaluated expressions as data.
