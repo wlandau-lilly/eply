@@ -1,6 +1,6 @@
 ---
 title: "eply"
-author: "Will Landau"
+author: "William Michael Landau"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -9,27 +9,29 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-
 # Basic usage
 
 ```{r}
 library(eply)
 ```
 
-The function `eply()` is like `apply()` except that the dataset is a bunch of expressions that are lazily evaluated into function arguments.
+`eply()` applies a function over a data frame of expressions.
 
-Begin with a function to apply iteratively.
+Begin with a function.
 ```{r}
-example.fun
+.fun = example.fun
+.fun
 ```
 
-Then, make a data frame of function arguments.
+Then, make a data frame of expressions that return arguments to `.fun`.
 ```{r}
 library(eply)
-example.expr()
+.expr = example.expr()
+.expr
+str(.expr) # The expressions are actually just characters.
 ```
 
-Each row is a function call. The elements are converted from text to expressions, evaluated, and then passed to the function.
+For each row of `.expr`, evaluate the expressions and feed the results to `.fun`.
 
 ```{r}
 eply(.fun = example.fun, .expr = example.expr())
@@ -37,7 +39,7 @@ eply(.fun = example.fun, .expr = example.expr())
 
 # The `strings()` function
 
-The `strings()` function can help make the `.expr` data frame.
+The `strings()` function can help create `.expr`.
 
 ```{r}
 data.frame(
@@ -47,10 +49,10 @@ data.frame(
 
 # Parallel execution
 
-For Mac and Linux users, `parallel::mclapply()` is leveraged to distribute the work over multiple parallel tasks.
+For Mac and Linux users, `parallel::mclapply()` can distribute the work over multiple parallel tasks behind the scenes.
 
 ```{r, eval = F}
 eply(.fun = example.fun, .expr = example.expr(), .split = strings(y, rep), .tasks = 2)
 ```
 
-Above, `.expr` is split into multiple pieces, one for each unique combination of `y` and `rep`. These pieces are processed in parallel (in this case, 2 at a time).
+Above, `.expr` splits into multiple pieces, one for each unique combination of `y` and `rep`. These pieces are processed in parallel (in this case, 2 at a time).

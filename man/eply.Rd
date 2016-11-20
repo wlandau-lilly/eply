@@ -40,4 +40,7 @@ With \code{.tasks} and \code{.split}, Mac and Linux users can
 distribute the work over multple parallel tasks. See the vignette for an 
 example (\code{vignette("eply")}).
 }
+\seealso{
+\code{\link{help_eply}}
+}
 

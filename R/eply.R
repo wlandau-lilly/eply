@@ -1,6 +1,7 @@
 #' @title Function \code{eply}
 #' @description Apply a function over a data frame of unevaluated expressions.
 #' Parallel execution is available using the \code{.split} and \code{.tasks} arguments.
+#' @seealso \code{\link{help_eply}}
 #' @export
 #' @details \code{.fun} is a function, and \code{.expr} is a data frame. 
 #' In \code{.expr}, each row stands for a single call to \code{.fun}, and each
