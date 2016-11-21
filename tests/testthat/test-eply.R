@@ -52,7 +52,7 @@ test_that("Parallelism in function eply works.", {
   }
 
   f = function(x) return(x)
-  d = data.frame(x = letters[1:2], y = 1:2)
+  d = data.frame(x = c("return(a)", "return(b)"), y = 1:2)
   expect_warning(eply(f, d, .split = "y", .tasks = 2))
   expect_warning(eply(f, d, .split = "y", .tasks = 2, .with = list(b = 2)))
   a = b = 1
