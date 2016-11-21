@@ -4,13 +4,16 @@
 \alias{eply_serial}
 \title{Function \code{eply_serial}}
 \usage{
-eply_serial(.fun, .expr)
+eply_serial(.fun, .expr, .with = environment())
 }
 \arguments{
 \item{.fun}{function to evaluate.}
 
 \item{.expr}{data frame with function calls as rows and function arguments
 as columns.}
+
+\item{.with}{list, data frame, or environment with the
+data accessible to \code{.expr}}
 }
 \value{
 a list or vector of return values of \code{.fun}.

@@ -9,6 +9,34 @@ test_that("Function eply parses input correctly.", {
   expect_error(eply(f, e, .split = "bla"))
 })
 
+test_that("Function eply uses .with correctly.", {
+  f = function(x) return(x)
+  d = data.frame(x = letters[1:2])
+  expect_error(eply(f, d))
+  expect_error(eply(f, d, .with = list(b = 2)))
+  a = b = 1
+  k = list(a = 3, b = 4)
+  expect_equal(eply(f, d, .with = k), 3:4)
+  e = new.env()
+  e$a = 5
+  e$b = 6
+  expect_equal(eply(f, d, .with = e), 5:6)
+})
+
+test_that("Function eply uses .with correctly.", {
+  f = function(x) return(x)
+  d = data.frame(x = letters[1:2])
+  expect_error(eply(f, d))
+  expect_error(eply(f, d, .with = list(b = 2)))
+  a = b = 1
+  k = list(a = 3, b = 4)
+  expect_equal(eply(f, d, .with = k), 3:4)
+  e = new.env()
+  e$a = 5
+  e$b = 6
+  expect_equal(eply(f, d, .with = e), 5:6)
+})
+
 test_that("Parallelism in function eply works.", {
   f = example.fun
   e = example.expr()
@@ -22,4 +50,16 @@ test_that("Parallelism in function eply works.", {
     }
     expect_equal(o, o2)
   }
+
+  f = function(x) return(x)
+  d = data.frame(x = letters[1:2], y = 1:2)
+  expect_warning(eply(f, d, .split = "y", .tasks = 2))
+  expect_warning(eply(f, d, .split = "y", .tasks = 2, .with = list(b = 2)))
+  a = b = 1
+  k = list(a = 3, b = 4)
+  expect_equal(eply(f, d, .split = "y", .tasks = 2, .with = k), 3:4)
+  e = new.env()
+  e$a = 5
+  e$b = 6
+  expect_equal(eply(f, d, .split = "y", .tasks = 2, .with = e), 5:6)
 })

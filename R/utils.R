@@ -6,10 +6,12 @@
 #' @param .fun function to evaluate.
 #' @param .expr data frame with function calls as rows and function arguments
 #' as columns. 
-eply_serial = function(.fun, .expr){
+#' @param .with list, data frame, or environment with the
+#' data accessible to \code{.expr}
+eply_serial = function(.fun, .expr, .with = environment()){
   subset(.expr, select = formalArgs(.fun)) %>%
   apply(1, function(x){
-    .args = eval_text(x)
+    .args = eval_text(x, .with = .with)
     do.call(.fun, .args)
   }) %>%
   unname
@@ -22,9 +24,21 @@ eply_serial = function(.fun, .expr){
 #' @export
 #' @return list of evaluated expressions
 #' @param x character vector encoding unevaluated expressions
-eval_text = Vectorize(FUN = function(x){
-  eval(parse(text = x))
+#' @param .with list, data frame, or environment with the
+#' data accessible to \code{.expr}
+eval_text = Vectorize(FUN = function(x, .with = environment()){
+   eval(parse(text = x), envir = .with)
 }, vectorize.arg = "x", SIMPLIFY = FALSE)
+
+#' @title Function \code{quotes}
+#' @description Put quotes around each element of a character vector.
+#' @seealso \code{\link{eply}}
+#' @export
+#' @return character vector with quotes around it
+#' @param x character vector or object to be coerced to character.
+quotes = function(x = NULL){
+  paste0("\"", x, "\"")
+}
 
 #' @title Function \code{is_serial}
 #' @description Determine whether to execute \code{\link{eply}} serially.

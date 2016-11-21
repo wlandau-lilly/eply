@@ -4,7 +4,7 @@
 \alias{eply}
 \title{Function \code{eply}}
 \usage{
-eply(.fun, .expr, .split = NULL, .tasks = 1)
+eply(.fun, .expr, .with = environment(), .split = NULL, .tasks = 1)
 }
 \arguments{
 \item{.fun}{function to evaluate.}
@@ -13,6 +13,9 @@ eply(.fun, .expr, .split = NULL, .tasks = 1)
 as columns. The elements are characters that encode unevaluated expressions.
 These expressions evaluate to function arguments of \code{.fun}. The argument
 names of \code{.fun} must be contained in the column names of \code{.expr}.}
+
+\item{.with}{list, data frame, or environment with the
+data accessible to \code{.expr}}
 
 \item{.split}{character vector of columns of \code{.expr}, specifies how
 the work is distributed across parallel tasks. 
@@ -32,9 +35,12 @@ Parallel execution is available using the \code{.split} and \code{.tasks} argume
 \code{.fun} is a function, and \code{.expr} is a data frame. 
 In \code{.expr}, each row stands for a single call to \code{.fun}, and each
 column stamds for an argument. Each element is a character encoding an 
-unevaluated expression. When \code{\link{eply}} is called, the expressions 
-in each row of \code{.expr} are evaluated, and the results are given to 
-\code{.fun} as function arguments. The column names of \code{.expr} must
+unevaluated expression. \code{.with} is a list, data frame, or environment
+containing the variables that these expressions need.
+When \code{\link{eply}} is called, the expressions 
+in each row of \code{.expr} are evaluated on \code{.with}, 
+and the results are given to \code{.fun} as function arguments. 
+The column names of \code{.expr} must
 contain the argument names of \code{.fun}.
 With \code{.tasks} and \code{.split}, Mac and Linux users can 
 distribute the work over multple parallel tasks. See the vignette for an 

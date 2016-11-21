@@ -4,10 +4,13 @@
 \alias{eval_text}
 \title{Function \code{eval_text}}
 \usage{
-eval_text(x)
+eval_text(x, .with = environment())
 }
 \arguments{
 \item{x}{character vector encoding unevaluated expressions}
+
+\item{.with}{list, data frame, or environment with the
+data accessible to \code{.expr}}
 }
 \value{
 list of evaluated expressions
