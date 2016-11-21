@@ -30,16 +30,6 @@ eval_text = Vectorize(FUN = function(x, .with = environment()){
    eval(parse(text = x), envir = .with)
 }, vectorize.arg = "x", SIMPLIFY = FALSE)
 
-#' @title Function \code{quotes}
-#' @description Put quotes around each element of a character vector.
-#' @seealso \code{\link{eply}}
-#' @export
-#' @return character vector with quotes around it
-#' @param x character vector or object to be coerced to character.
-quotes = function(x = NULL){
-  paste0("\"", x, "\"")
-}
-
 #' @title Function \code{is_serial}
 #' @description Determine whether to execute \code{\link{eply}} serially.
 #' @seealso \code{\link{eply}}
