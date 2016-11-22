@@ -1,4 +1,4 @@
-# vectorized eval
+# vectorized eval-parse
 veval = Vectorize(FUN = function(x, .with = environment()){
    eval(parse(text = as.character(x)), envir = .with)
 }, vectorize.arg = "x", SIMPLIFY = FALSE, USE.NAMES = TRUE)

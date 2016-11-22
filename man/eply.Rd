@@ -44,6 +44,6 @@ distribute the work over multple parallel tasks. See the vignette for an
 example (\code{vignette("eply")}).
 }
 \seealso{
-\code{\link{seval}}, \code{\link{veval}}, \code{\link{help_eply}}
+\code{\link{meval}}, \code{\link{help_eply}}
 }
 

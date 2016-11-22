@@ -24,6 +24,6 @@ evaluate a character vector of quoted expressions
 and return a collection of results
 }
 \seealso{
-\code{\link{veval}}, \code{\link{eply}}, \code{\link{help_eply}}
+\code{\link{meval}}, \code{\link{eply}}, \code{\link{help_eply}}
 }
 

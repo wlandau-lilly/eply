@@ -51,15 +51,26 @@ b = 2
 eply(.fun, .expr)
 ```
 
-# Functions `veval()` and `seval()`
+# Function `meval()`
 
-`eply()` uses `veval()` to evaluate each row of `.expr`. `seval()` simplifies its result.
+`meval()` evaluates a character vector of expressions.
 
 ```{r}
-veval(c("subset(mtcars, cyl == 4, mpg, TRUE)", "mtcars[1:2, 1:2]"))
-veval(c("a+1", "b+2"), .with)
-seval(c("a+1", "b+2"), .with)
+meval(c("1+1", "2+2", "3+3"))
+meval(c("subset(mtcars, cyl == a, mpg, TRUE)", "mtcars[1:2, 1:2]"), 
+      .with = list(a = 4))
 ```
+
+# Parallel execution
+
+For Mac and Linux users, `parallel::mclapply()` can distribute the work over multiple parallel tasks behind the scenes.
+
+```{r, eval = F}
+eply(.fun = example.fun, .expr = example.expr(), .split = strings(y, rep), .tasks = 2)
+meval(x, .tasks = 2)
+```
+
+In `eply()` above, `.expr` splits into multiple pieces, one for each unique combination of `y` and `rep`. These pieces are processed in parallel (in this case, 2 at a time). For `meval()`, expressions are divided equally among the available parallel tasks.
 
 # Functions `quotes()` and `unquote()`
 
@@ -91,14 +102,3 @@ data.frame(
   arg1 = strings(a + b, sqrt(x) - 2), 
   arg2 = 1:2)
 ```
-
-
-# Parallel execution
-
-For Mac and Linux users, `parallel::mclapply()` can distribute the work over multiple parallel tasks behind the scenes.
-
-```{r, eval = F}
-eply(.fun = example.fun, .expr = example.expr(), .split = strings(y, rep), .tasks = 2)
-```
-
-Above, `.expr` splits into multiple pieces, one for each unique combination of `y` and `rep`. These pieces are processed in parallel (in this case, 2 at a time).
