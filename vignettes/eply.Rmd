@@ -51,7 +51,7 @@ b = 2
 eply(.fun, .expr)
 ```
 
-# Function `quotes()`
+# Functions `quotes()` and `unquote()`
 
 If you want some expressions to actually be strings, use `quotes()`.
 
@@ -63,6 +63,13 @@ If you want some expressions to actually be strings, use `quotes()`.
 .fun = function(string, variable) paste(string, variable)
 .with = list(c = "C", d = "D")
 eply(.fun, .expr, .with)
+```
+
+Undo with `unquote()`.
+
+```{r}
+.expr$string = unquote(.expr$string)
+.expr
 ```
 
 # Function `strings()`

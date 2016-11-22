@@ -8,6 +8,17 @@ quotes = function(x = NULL){
   paste0("\"", x, "\"")
 }
 
+#' @title Function \code{unquote}
+#' @description Remove leading and trailing escaped quotes from character strings.
+#' @seealso \code{\link{eply}}
+#' @export
+#' @return character vector without leading or trailing escaped quotes around it
+#' @param x character vector
+unquote = function(x = NULL){
+  gsub("^\"|\"$", "", x)
+}
+
+
 #' @title Function \code{strings}
 #' @description Turn valid expressions into character strings.
 #' @seealso \code{\link{eply}}

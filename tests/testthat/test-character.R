@@ -1,0 +1,18 @@
+context("character")
+
+test_that("Functions quotes() and unquote() are correct.", {
+  expect_equal(quotes(), "\"\"")
+  expect_equal(unquote(), character(0))
+  expect_equal(quotes(strings(x, y)), c("\"x\"", "\"y\""))
+  a = c("\"x\"", "\"y\"", "return(a)", "return(\"a\")", "\"x", "y\"", "\"x\"", "\"return(\"a\")\"")
+  b = c("x", "y", "return(a)", "return(\"a\")", "x", "y", "x", "return(\"a\")")
+  expect_equal(unquote(a), b)
+  expect_equal(unquote(quotes(a)), a)
+  expect_equal(unquote(quotes(b)), b)
+})
+
+test_that("Function strings() is correct.", {
+  expect_equal(character(0), strings())
+  expect_equal("1", strings(1))
+  expect_equal("list(\"foo\", f(c(\"bar\", \"baz\")))", strings(list("foo", f(c("bar", "baz")))))
+})
