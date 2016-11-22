@@ -1,13 +1,4 @@
-#' @title Function \code{eply_serial}
-#' @description Serial version of \code{\link{eply}}.
-#' @seealso \code{\link{eply}}
-#' @export
-#' @return a list or vector of return values of \code{.fun}.
-#' @param .fun function to evaluate.
-#' @param .expr data frame with function calls as rows and function arguments
-#' as columns. 
-#' @param .with list, data frame, or environment with the
-#' data accessible to \code{.expr}
+# serial version of eply
 eply_serial = function(.fun, .expr, .with = environment()){
   subset(.expr, select = formalArgs(.fun)) %>%
   apply(1, function(x){
@@ -17,29 +8,12 @@ eply_serial = function(.fun, .expr, .with = environment()){
   unname
 }
 
-#' @title Function \code{eval_text}
-#' @description Evaluate expressions encoded as
-#' elements of a character vector.
-#' @seealso \code{\link{eply}}
-#' @export
-#' @return list of evaluated expressions
-#' @param x character vector encoding unevaluated expressions
-#' @param .with list, data frame, or environment with the
-#' data accessible to \code{.expr}
+# evaluate expressions in a character vector
 eval_text = Vectorize(FUN = function(x, .with = environment()){
    eval(parse(text = x), envir = .with)
 }, vectorize.arg = "x", SIMPLIFY = FALSE)
 
-#' @title Function \code{is_serial}
-#' @description Determine whether to execute \code{\link{eply}} serially.
-#' @seealso \code{\link{eply}}
-#' @export
-#' @return \code{TRUE} if \code{\link{eply}} will run serially
-#' and \code{FALSE} if parallelized.
-#' @param .expr argument to \code{\link{eply}}
-#' @param .split argument to \code{\link{eply}}
-#' @param .tasks argument to \code{\link{eply}}
-#' @param .os operating system
+# TRUE if serial eply and FALSE if parallel via mclapply
 is_serial = function(.expr, .split = NULL, .tasks = 1,
   .os = Sys.info()[['sysname']]){
 
