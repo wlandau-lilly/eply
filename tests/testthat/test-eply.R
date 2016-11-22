@@ -35,8 +35,8 @@ test_that("Parallelism in function eply is activated and works.", {
   for(s in list("rep", c("y", "rep"))){
     if(os == "Windows"){
       expect_warning(o2 <- eply(f, e, w, .split = s, .tasks = 2))
-      expect_warning(expect_error(
-        eply(f, data.frame(x = strings(this, is, wrong)), .split = "x", .tasks = 2)))
+      expect_error(
+        eply(f, data.frame(x = strings(this, is, wrong)), .split = "x", .tasks = 2))
     } else {
       expect_silent(o2 <- eply(f, e, w, .split = s, .tasks = 2))
       expect_error(eply(f, data.frame(x = strings(this, is, wrong)), .split = "x", .tasks = 2))
