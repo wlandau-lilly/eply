@@ -1,3 +1,8 @@
+# vectorized eval
+veval = Vectorize(FUN = function(x, .with = environment()){
+   eval(parse(text = as.character(x)), envir = .with)
+}, vectorize.arg = "x", SIMPLIFY = FALSE, USE.NAMES = TRUE)
+
 # serial version of eply
 eply_serial = function(.fun, .expr, .with = environment()){
   subset(.expr, select = formalArgs(.fun)) %>%
