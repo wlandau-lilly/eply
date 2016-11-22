@@ -1,5 +1,5 @@
 # serial version of eply
-eply_serial = function(.fun, .expr, .with = sys.frame(sys.nframe())){
+eply_serial = function(.fun, .expr, .with = environment()){
   subset(.expr, select = formalArgs(.fun)) %>%
   apply(1, function(x){
     .args = eval_text(x, .with = .with)
@@ -9,7 +9,7 @@ eply_serial = function(.fun, .expr, .with = sys.frame(sys.nframe())){
 }
 
 # evaluate expressions in a character vector
-eval_text = Vectorize(FUN = function(x, .with = sys.frame(sys.nframe())){
+eval_text = Vectorize(FUN = function(x, .with = environment()){
    eval(parse(text = x), envir = .with)
 }, vectorize.arg = "x", SIMPLIFY = FALSE)
 

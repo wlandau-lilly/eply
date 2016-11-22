@@ -43,6 +43,14 @@ For each row in `.expr`, evaluate the expressions and feed the results to `.fun`
 eply(.fun, .expr, .with)
 ```
 
+You can discard `.with` if your data are in a clean global environment.
+
+```{r}
+a = 1
+b = 2
+eply(.fun, .expr)
+```
+
 # Function `quotes()`
 
 If you want some expressions to actually be strings, use `quotes()`.
