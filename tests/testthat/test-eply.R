@@ -26,21 +26,7 @@ test_that("Function eply uses .with correctly.", {
   expect_equal(eply(f, d, .with = e), 5:6)
 })
 
-test_that("Function eply uses .with correctly.", {
-  f = function(x) return(x)
-  d = data.frame(x = letters[1:2])
-  expect_error(eply(f, d))
-  expect_error(eply(f, d, .with = list(b = 2)))
-  a = b = 1
-  k = list(a = 3, b = 4)
-  expect_equal(eply(f, d, .with = k), 3:4)
-  e = new.env()
-  e$a = 5
-  e$b = 6
-  expect_equal(eply(f, d, .with = e), 5:6)
-})
-
-test_that("Parallelism in function eply works.", {
+test_that("Parallelism in function eply is activated and works.", {
   f = example.fun
   e = example.expr()
   w = example.with()
@@ -49,8 +35,10 @@ test_that("Parallelism in function eply works.", {
   for(s in list("rep", c("y", "rep"))){
     if(os == "Windows"){
       expect_warning(o2 <- eply(f, e, w, .split = s, .tasks = 2))
+      expect_error(eply(f, data.frame(x = strings(this, is, wrong)), .split = "x", .tasks = 2))
     } else {
       expect_silent(o2 <- eply(f, e, w, .split = s, .tasks = 2))
+      expect_warning(eply(f, data.frame(x = strings(this, is, wrong)), .split = "x", .tasks = 2))
     }
     expect_equal(o, o2)
   }
