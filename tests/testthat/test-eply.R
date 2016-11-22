@@ -39,7 +39,7 @@ test_that("Parallelism in function eply is activated and works.", {
         eply(f, data.frame(x = strings(this, is, wrong)), .split = "x", .tasks = 2)))
     } else {
       expect_silent(o2 <- eply(f, e, w, .split = s, .tasks = 2))
-      expect_warning(eply(f, data.frame(x = strings(this, is, wrong)), .split = "x", .tasks = 2))
+      expect_error(eply(f, data.frame(x = strings(this, is, wrong)), .split = "x", .tasks = 2))
     }
     expect_equal(o, o2)
   }

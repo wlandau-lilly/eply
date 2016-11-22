@@ -27,7 +27,9 @@
 #' @param .tasks number of parallel tasks for distributing the work.
 #' See the vignette for an example \code{vignette("eply")}.
 eply = function(.fun, .expr, .with = environment(), .split = NULL, .tasks = 1){
-  if(is_serial(.expr = .expr, .split = .split, .tasks = .tasks)){ 
+  check_arguments(.fun = .fun, .expr = .expr, .with = .with, 
+    .split = .split, .tasks = .tasks)
+  if(is_serial(.split = .split, .tasks = .tasks)){ 
     eply_serial(.fun = .fun, .expr = .expr, .with = .with) 
   } else {
     eply_parallel(.fun = .fun, .expr = .expr, .with = .with, 

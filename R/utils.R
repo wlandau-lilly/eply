@@ -30,30 +30,3 @@ eply_parallel = function(.fun, .expr, .with = environment(), .split = NULL, .tas
     unname
   out[order(true_order)]
 }
-
-# TRUE if serial eply and FALSE if parallel via mclapply
-is_serial = function(.expr, .split = NULL, .tasks = 1,
-  .os = Sys.info()[['sysname']]){
-
-  # Sanitize individual arguments.
-  if(.tasks < 1 | !is.numeric(.tasks))
-    stop(".tasks must be a number at least 1.")
-  if(!all(.split %in% colnames(.expr)))
-    stop(".split must be a subset of colnames(.expr).")
-
-  # Resolve conflicts.
-  if(.tasks > 1 & !length(.split)){
-    warning(".tasks > 1, but .split is empty. Executing serially.")
-    .tasks = 1
-  } else if(.tasks <= 1 & length(.split) > 0){
-    warning(".split is nonempty, but .tasks is 1. Executing serially.")
-  }
-
-  # Disable parallelism on Windows.
-  if(.tasks > 1 & .os == "Windows"){
-    warning("Parallel execution not supported on Windows. Executing serially.")
-    .tasks = 1
-  }
-
-  .tasks <= 1
-}
