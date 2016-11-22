@@ -29,7 +29,7 @@
 #' See the vignette for an example \code{vignette("eply")}.
 #' @param .tasks number of parallel tasks for distributing the work.
 #' See the vignette for an example \code{vignette("eply")}.
-eply = function(.fun, .expr, .with = environment(), .split = NULL, .tasks = 1){
+eply = function(.fun, .expr, .with = sys.frame(sys.nframe()), .split = NULL, .tasks = 1){
   if(is_serial(.expr = .expr, .split = .split, .tasks = .tasks)){ 
     eply_serial(.fun = .fun, .expr = .expr, .with = .with) 
   } else {
