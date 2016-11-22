@@ -2,16 +2,11 @@
 eply_serial = function(.fun, .expr, .with = environment()){
   subset(.expr, select = formalArgs(.fun)) %>%
   apply(1, function(x){
-    .args = eval_text(x, .with = .with)
+    .args = veval(x, .with = .with)
     do.call(.fun, .args)
   }) %>%
   unname
 }
-
-# evaluate expressions in a character vector
-eval_text = Vectorize(FUN = function(x, .with = environment()){
-   eval(parse(text = x), envir = .with)
-}, vectorize.arg = "x", SIMPLIFY = FALSE)
 
 # TRUE if serial eply and FALSE if parallel via mclapply
 is_serial = function(.expr, .split = NULL, .tasks = 1,

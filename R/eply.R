@@ -1,15 +1,14 @@
 #' @title Function \code{eply}
-#' @description Apply a function over a data frame of unevaluated expressions.
+#' @description Apply a function over a data frame of quoted expressions.
 #' Parallel execution is available using the \code{.split} and \code{.tasks} arguments.
-#' @seealso \code{\link{help_eply}}
+#' @seealso \code{\link{seval}}, \code{\link{veval}}, \code{\link{help_eply}}
 #' @export
 #' @details \code{.fun} is a function, and \code{.expr} is a data frame. 
 #' In \code{.expr}, each row stands for a single call to \code{.fun}, and each
-#' column stamds for an argument. Each element is a character encoding an 
-#' unevaluated expression. \code{.with} is a list, data frame, or environment
-#' containing the variables that these expressions need.
-#' When \code{\link{eply}} is called, the expressions 
-#' in each row of \code{.expr} are evaluated on \code{.with}, 
+#' column stamds for an argument. Each element is a quoted expression that 
+#' uses the data in \code{.with} during evaluation.
+#' When \code{\link{eply}} is called on each row, the expressions 
+#' are evaluated on \code{.with}, 
 #' and the results are given to \code{.fun} as function arguments. 
 #' The column names of \code{.expr} must
 #' contain the argument names of \code{.fun}.
@@ -18,10 +17,8 @@
 #' example (\code{vignette("eply")}).
 #' @return a list or vector of return values of \code{.fun}.
 #' @param .fun function to evaluate.
-#' @param .expr data frame with function calls as rows and function arguments
-#' as columns. The elements are characters that encode unevaluated expressions.
-#' These expressions evaluate to function arguments of \code{.fun}. The argument
-#' names of \code{.fun} must be contained in the column names of \code{.expr}.
+#' @param .expr data frame of quoted expressions. Column names must
+#' contain the argument names of \code{.fun}.
 #' @param .with list, data frame, or environment with the
 #' data accessible to \code{.expr}
 #' @param .split character vector of columns of \code{.expr}, specifies how

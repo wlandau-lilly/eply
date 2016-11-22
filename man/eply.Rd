@@ -9,10 +9,8 @@ eply(.fun, .expr, .with = environment(), .split = NULL, .tasks = 1)
 \arguments{
 \item{.fun}{function to evaluate.}
 
-\item{.expr}{data frame with function calls as rows and function arguments
-as columns. The elements are characters that encode unevaluated expressions.
-These expressions evaluate to function arguments of \code{.fun}. The argument
-names of \code{.fun} must be contained in the column names of \code{.expr}.}
+\item{.expr}{data frame of quoted expressions. Column names must
+contain the argument names of \code{.fun}.}
 
 \item{.with}{list, data frame, or environment with the
 data accessible to \code{.expr}}
@@ -28,17 +26,16 @@ See the vignette for an example \code{vignette("eply")}.}
 a list or vector of return values of \code{.fun}.
 }
 \description{
-Apply a function over a data frame of unevaluated expressions.
+Apply a function over a data frame of quoted expressions.
 Parallel execution is available using the \code{.split} and \code{.tasks} arguments.
 }
 \details{
 \code{.fun} is a function, and \code{.expr} is a data frame. 
 In \code{.expr}, each row stands for a single call to \code{.fun}, and each
-column stamds for an argument. Each element is a character encoding an 
-unevaluated expression. \code{.with} is a list, data frame, or environment
-containing the variables that these expressions need.
-When \code{\link{eply}} is called, the expressions 
-in each row of \code{.expr} are evaluated on \code{.with}, 
+column stamds for an argument. Each element is a quoted expression that 
+uses the data in \code{.with} during evaluation.
+When \code{\link{eply}} is called on each row, the expressions 
+are evaluated on \code{.with}, 
 and the results are given to \code{.fun} as function arguments. 
 The column names of \code{.expr} must
 contain the argument names of \code{.fun}.
@@ -47,6 +44,6 @@ distribute the work over multple parallel tasks. See the vignette for an
 example (\code{vignette("eply")}).
 }
 \seealso{
-\code{\link{help_eply}}
+\code{\link{seval}}, \code{\link{veval}}, \code{\link{help_eply}}
 }
 
