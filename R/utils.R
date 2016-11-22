@@ -26,7 +26,7 @@ eply_parallel = function(.fun, .expr, .with = environment(), .split = NULL, .tas
     as.integer
   out = mclapply(X = .expr_list, FUN = eply_serial, mc.cores = .tasks, 
     .fun = .fun, .with = .with) %>%
-    unlist %>%
+    unlist(recursive = FALSE) %>%
     unname
   out[order(true_order)]
 }
