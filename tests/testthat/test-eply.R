@@ -54,23 +54,4 @@ test_that("Parallelism in function eply works.", {
     }
     expect_equal(o, o2)
   }
-
-  f = function(x) return(x)
-  d = data.frame(x = c("return(a)", "return(b)"), y = 1:2)
-  if(os == "Windows"){
-    expect_error(eply(f, d, .split = "y", .tasks = 2))
-    expect_error(eply(f, d, .split = "y", .tasks = 2, .with = list(b = 2)))
-  } else {
-    expect_warning(eply(f, d, .split = "y", .tasks = 2))
-    expect_warning(eply(f, d, .split = "y", .tasks = 2, .with = list(b = 2)))
-  }
-  if(os != "Windows"){
-    a = b = 1
-    k = list(a = 3, b = 4)
-    expect_equal(eply(f, d, .split = "y", .tasks = 2, .with = k), 3:4)
-    e = new.env()
-    e$a = 5
-    e$b = 6
-    expect_equal(eply(f, d, .split = "y", .tasks = 2, .with = e), 5:6)
-  }
 })
