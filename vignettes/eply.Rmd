@@ -53,7 +53,7 @@ eply(.fun, .expr)
 
 # Functions `veval()` and `seval()`
 
-`eply()` uses `veval()` to evaluate each row of `.expr`. Function `.seval()` simplifies the result.
+`eply()` uses `veval()` to evaluate each row of `.expr`. `seval()` simplifies its result.
 
 ```{r}
 veval(c("subset(mtcars, cyl == 4, mpg, TRUE)", "mtcars[1:2, 1:2]"))
