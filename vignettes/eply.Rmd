@@ -25,28 +25,20 @@ Begin with a function.
 
 Then, make a data frame of expressions that return arguments to `.fun`.
 ```{r}
-library(eply)
 .expr = example.expr()
 .expr
 # str(.expr) # The expressions are actually just characters.
 ```
 
+Those expressions need data.
+
+```{r}
+.with = example.with()
+```
+
 For each row in `.expr`, evaluate the expressions and feed the results to `.fun`.
 
 ```{r}
-eply(.fun = example.fun, .expr = example.expr())
-```
-
-
-# Supply data
-
-If the expressions in `.expr` require data, pass a list, data frame, or environment to `.with`.
-
-```{r}
-.fun = function(x) return(x)
-.expr = data.frame(x = c("a", "b"))
-# eply(.fun, .expr) # Throws an error.
-.with = list(a = 1, b = 2)
 eply(.fun, .expr, .with)
 ```
 

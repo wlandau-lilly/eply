@@ -3,8 +3,11 @@ context("eply")
 test_that("Function eply parses input correctly.", {
   f = example.fun
   e = example.expr()
+  w = example.with()
   expect_error(eply(.fun = f))
   expect_error(eply(.expr = e))
+  expect_error(eply(.with = w))
+  expect_error(eply(f, e))
   expect_error(eply(f, e, .tasks = 0))
   expect_error(eply(f, e, .split = "bla"))
 })
@@ -40,21 +43,27 @@ test_that("Function eply uses .with correctly.", {
 test_that("Parallelism in function eply works.", {
   f = example.fun
   e = example.expr()
-  expect_silent(o <- eply(f, e))
+  w = example.with()
+  expect_silent(o <- eply(f, e, w))
   os = Sys.info()[['sysname']]
   for(s in list("rep", c("y", "rep"))){
     if(os == "Windows"){
-      expect_warning(o2 <- eply(f, e, .split = s, .tasks = 2))
+      expect_warning(o2 <- eply(f, e, w, .split = s, .tasks = 2))
     } else {
-      expect_silent(o2 <- eply(f, e, .split = s, .tasks = 2))
+      expect_silent(o2 <- eply(f, e, w, .split = s, .tasks = 2))
     }
     expect_equal(o, o2)
   }
 
   f = function(x) return(x)
   d = data.frame(x = c("return(a)", "return(b)"), y = 1:2)
-  expect_warning(eply(f, d, .split = "y", .tasks = 2))
-  expect_warning(eply(f, d, .split = "y", .tasks = 2, .with = list(b = 2)))
+  if(os == "Windows"){
+    expect_error(eply(f, d, .split = "y", .tasks = 2))
+    expect_error(eply(f, d, .split = "y", .tasks = 2, .with = list(b = 2)))
+  } else {
+    expect_warning(eply(f, d, .split = "y", .tasks = 2))
+    expect_warning(eply(f, d, .split = "y", .tasks = 2, .with = list(b = 2)))
+  }
   a = b = 1
   k = list(a = 3, b = 4)
   expect_equal(eply(f, d, .split = "y", .tasks = 2, .with = k), 3:4)

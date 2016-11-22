@@ -5,4 +5,5 @@ test_that("Example arguments to eply are produced.", {
   expect_true(is.data.frame(e))
   expect_true(all(dim(e) > 1))
   expect_equal(example.fun(6,3), 2)
+  expect_true(is.list(example.with()))
 })

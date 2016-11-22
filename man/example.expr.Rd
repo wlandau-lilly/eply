@@ -10,7 +10,7 @@ example.expr()
 Example \code{.expr} argument to \code{\link{eply}}.
 }
 \description{
-Example \code{.expr} argument to \code{\link{eply}}.
+Return example \code{.expr} argument for \code{\link{eply}}.
 }
 \seealso{
 \code{\link{eply}}
