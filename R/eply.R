@@ -30,12 +30,7 @@ eply = function(.fun, .expr, .with = environment(), .split = NULL, .tasks = 1){
   if(is_serial(.expr = .expr, .split = .split, .tasks = .tasks)){ 
     eply_serial(.fun = .fun, .expr = .expr, .with = .with) 
   } else {
-    index = subset(.expr, select = .split, drop = FALSE) %>% 
-      apply(1, paste, collapse = "")
-    index = ordered(index, levels = unique(index))
-    split(x = .expr, f = index, drop = FALSE) %>%
-      mclapply(FUN = eply_serial, mc.cores = .tasks, .fun = .fun, .with = .with) %>%
-      unlist %>%
-      unname
+    eply_parallel(.fun = .fun, .expr = .expr, .with = .with, 
+      .split = .split, .tasks = .tasks)
   }
 }

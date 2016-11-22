@@ -13,6 +13,24 @@ eply_serial = function(.fun, .expr, .with = environment()){
   unname
 }
 
+# parallel version of eply
+eply_parallel = function(.fun, .expr, .with = environment(), .split = NULL, .tasks = 1){
+  rownames(.expr) = 1:nrow(.expr)
+  index = subset(.expr, select = .split, drop = FALSE) %>% 
+    apply(1, paste, collapse = "")
+  index = ordered(index, levels = unique(index))
+  .expr_list = split(x = .expr, f = index, drop = FALSE) 
+  true_order = .expr_list %>%
+    lapply(FUN = rownames) %>%
+    unlist %>%
+    as.integer
+  out = mclapply(X = .expr_list, FUN = eply_serial, mc.cores = .tasks, 
+    .fun = .fun, .with = .with) %>%
+    unlist %>%
+    unname
+  out[order(true_order)]
+}
+
 # TRUE if serial eply and FALSE if parallel via mclapply
 is_serial = function(.expr, .split = NULL, .tasks = 1,
   .os = Sys.info()[['sysname']]){

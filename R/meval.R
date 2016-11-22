@@ -17,6 +17,8 @@ meval = function(x = NULL, .with = environment(), .tasks = 1){
     y = rep(1:.tasks, length.out = length(x)))
   .split = NULL
   if(.tasks > 1) .split = "y"
-  eply(.fun = function(x) x, .expr = .expr, .with = .with, 
+  out = eply(.fun = function(x) x, .expr = .expr, .with = .with, 
     .tasks = .tasks, .split = .split)
+  names(out) = .expr$x
+  out
 }
