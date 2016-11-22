@@ -34,7 +34,7 @@ Those expressions need data.
 
 ```{r}
 .with = example.with()
-.with
+str(.with)
 ```
 
 For each row in `.expr`, evaluate the expressions and feed the results to `.fun`.
