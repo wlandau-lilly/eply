@@ -7,7 +7,6 @@
 
 `eply()` applies a function over a data frame of expressions.
 
-# The following sections will take effect if/when eply becomes open source.
 
 # Installation
 
