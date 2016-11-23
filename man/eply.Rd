@@ -4,7 +4,7 @@
 \alias{eply}
 \title{Function \code{eply}}
 \usage{
-eply(.fun, .expr, .with = environment(), .split = NULL, .tasks = 1)
+eply(.fun, .expr, .with = environment())
 }
 \arguments{
 \item{.fun}{function to evaluate.}
@@ -14,13 +14,6 @@ contain the argument names of \code{.fun}.}
 
 \item{.with}{list, data frame, or environment with the
 data accessible to \code{.expr}}
-
-\item{.split}{character vector of columns of \code{.expr}, specifies how
-the work is distributed across parallel tasks. 
-See the vignette for an example \code{vignette("eply")}.}
-
-\item{.tasks}{number of parallel tasks for distributing the work.
-See the vignette for an example \code{vignette("eply")}.}
 }
 \value{
 a list or vector of return values of \code{.fun}.
@@ -44,6 +37,6 @@ distribute the work over multple parallel tasks. See the vignette for an
 example (\code{vignette("eply")}).
 }
 \seealso{
-\code{\link{meval}}, \code{\link{help_eply}}
+\code{\link{evals}}, \code{\link{help_eply}}
 }
 

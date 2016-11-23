@@ -26,21 +26,22 @@ test_that("Function eply uses .with correctly.", {
   expect_equal(eply(f, d, .with = e), 5:6)
 })
 
-test_that("Parallelism in function eply is activated and works.", {
+test_that("Function eply gives correct answers.", {
   f = example.fun
   e = example.expr()
   w = example.with()
   expect_silent(o <- eply(f, e, w))
-  os = Sys.info()[['sysname']]
-  for(s in list("rep", c("y", "rep"))){
-    if(os == "Windows"){
-      expect_warning(o2 <- eply(f, e, w, .split = s, .tasks = 2))
-      expect_error(
-        eply(f, data.frame(x = strings(this, is, wrong)), .split = "x", .tasks = 2))
-    } else {
-      expect_silent(o2 <- eply(f, e, w, .split = s, .tasks = 2))
-      expect_error(eply(f, data.frame(x = strings(this, is, wrong)), .split = "x", .tasks = 2))
-    }
-    expect_equal(o, o2)
-  }
+  expect_true(all(is.finite(o)))
+  expect_equal(length(o), dim(e)[1])
+
+  d = data.frame(
+    x = c("1+1", "6+7"),
+    y = c(2, 3)
+  )
+  f = function(x, y) x^y
+  
+  expect_silent(o <- eply(f, d, w))
+  expect_true(all(is.finite(o)))
+  expect_equal(length(o), dim(d)[1])
+  expect_equal(o, c(4, 2197))
 })

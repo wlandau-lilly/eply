@@ -1,6 +1,6 @@
 context("checks")
 
-test_that("argument checks work.", {
+test_that("checks_eply works.", {
   f = example.fun
   e = example.expr()
   w = example.with()
@@ -19,4 +19,16 @@ test_that("argument checks work.", {
   expect_error(eply(.fun = f, .expr = e, .with = w, .tasks = 1:5))
   expect_error(eply(.fun = f, .expr = e, .with = w, .tasks = 0))
   expect_silent(o <- eply(.fun = f, .expr = e, .with = w))
+})
+
+test_that("checks_evals works.", {
+  expect_equal(evals(), NULL)
+  x = c("1+1", "2+2")
+  expect_silent(o <- evals(x))
+  expect_silent(o <- evals(x, .with = list(), .simplify = T))
+  expect_error(evals(x, .with = NULL))
+  expect_error(evals(x, .with = "bla"))
+  expect_error(evals(x, .simplify = NULL))
+  expect_error(evals(x, .simplify = "bla"))
+  expect_error(evals(x, .simplify = c(T, F)))
 })
