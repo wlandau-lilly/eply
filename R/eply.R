@@ -27,6 +27,5 @@ eply = function(.fun, .expr, .with = environment()){
   apply(1, function(x){
     .args = vevals(x, .with = .with)
     do.call(.fun, .args)
-  }) %>%
-  unname
+  })
 }

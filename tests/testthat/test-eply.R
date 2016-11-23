@@ -19,11 +19,15 @@ test_that("Function eply uses .with correctly.", {
   expect_error(eply(f, d, .with = list(b = 2)))
   a = b = 1
   k = list(a = 3, b = 4)
-  expect_equal(eply(f, d, .with = k), 3:4)
+  o = 3:4
+  names(o) = rownames(d)
+  expect_equal(eply(f, d, .with = k), o)
   e = new.env()
   e$a = 5
   e$b = 6
-  expect_equal(eply(f, d, .with = e), 5:6)
+  o = 5:6
+  names(o) = rownames(d)
+  expect_equal(eply(f, d, .with = e), o)
 })
 
 test_that("Function eply gives correct answers.", {
@@ -43,5 +47,7 @@ test_that("Function eply gives correct answers.", {
   expect_silent(o <- eply(f, d, w))
   expect_true(all(is.finite(o)))
   expect_equal(length(o), dim(d)[1])
-  expect_equal(o, c(4, 2197))
+  o2 = c(4, 2197)
+  names(o2) = rownames(d)
+  expect_equal(o, o2)
 })
