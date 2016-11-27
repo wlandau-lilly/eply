@@ -4,8 +4,14 @@
 #' @export
 #' @return character vector with quotes around it
 #' @param x character vector or object to be coerced to character.
-quotes = function(x = NULL){
-  paste0("\"", x, "\"")
+#' @param single Add single quotes if \code{TRUE} and double quotes otherwise.
+quotes = function(x = NULL, single = FALSE){
+  stopifnot(is.logical(single))
+  if(single){
+    paste0("'", x, "'")
+  } else {
+    paste0("\"", x, "\"")
+  }
 }
 
 #' @title Function \code{unquote}
@@ -15,7 +21,7 @@ quotes = function(x = NULL){
 #' @return character vector without leading or trailing escaped quotes around it
 #' @param x character vector
 unquote = function(x = NULL){
-  gsub("^\"|\"$", "", x)
+  gsub("^[\"']*|[\"']*$", "", x)
 }
 
 

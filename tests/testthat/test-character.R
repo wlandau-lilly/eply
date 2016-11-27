@@ -2,12 +2,19 @@ context("character")
 
 test_that("Functions quotes() and unquote() are correct.", {
   expect_equal(quotes(), "\"\"")
+  expect_equal(quotes(single = T), "\'\'")
+  expect_equal(quotes(c("x", "y")), c("\"x\"", "\"y\""))
+  expect_equal(quotes(c("x", "y"), single = F), c("\"x\"", "\"y\""))
+  expect_equal(quotes(c("x", "y"), single = T), c("\'x\'", "\'y\'"))
+  expect_equal(unquote(quotes(quotes(quotes(c("x", "y")), single = T), 
+    single = F)), c("x", "y"))
+
   expect_equal(unquote(), character(0))
   expect_equal(quotes(strings(x, y)), c("\"x\"", "\"y\""))
   a = c("\"x\"", "\"y\"", "return(a)", "return(\"a\")", "\"x", "y\"", "\"x\"", "\"return(\"a\")\"")
   b = c("x", "y", "return(a)", "return(\"a\")", "x", "y", "x", "return(\"a\")")
   expect_equal(unquote(a), b)
-  expect_equal(unquote(quotes(a)), a)
+  expect_equal(unquote(quotes(a)), b)
   expect_equal(unquote(quotes(b)), b)
 })
 

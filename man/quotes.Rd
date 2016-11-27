@@ -4,10 +4,12 @@
 \alias{quotes}
 \title{Function \code{quotes}}
 \usage{
-quotes(x = NULL)
+quotes(x = NULL, single = FALSE)
 }
 \arguments{
 \item{x}{character vector or object to be coerced to character.}
+
+\item{single}{Add single quotes if \code{TRUE} and double quotes otherwise.}
 }
 \value{
 character vector with quotes around it

@@ -9,13 +9,15 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+The `eply` package processes batches of quoted expressions. Just as `apply()` acts on data frames of function arguments, `eply()` acts on data frames of quoted **expressions** that **return** arguments. The package also has `evals()`, which simply evaluates a character vector of quoted expressions, plus some nice utilities.
+
 # Function `eply()`
 
 ```{r}
 library(eply)
 ```
 
-`eply()` applies a function over a data frame of expressions.
+`eply()` applies a function over a data frame of quoted expressions.
 
 Begin with a function.
 ```{r}
@@ -23,57 +25,80 @@ Begin with a function.
 .fun
 ```
 
-Then, make a data frame of expressions that return arguments to `.fun`.
+Then, make a data frame of quoted expressions that return arguments to `.fun`.
 ```{r}
 .expr = example.expr()
 .expr
 # str(.expr) # The expressions are actually just characters.
 ```
 
-Those expressions need data.
-
-```{r}
-.with = example.with()
-str(.with)
-```
-
-For each row in `.expr`, evaluate the expressions and feed the results to `.fun`.
-
-```{r}
-eply(.fun, .expr, .with)
-```
-
-You can discard `.with` if your data are in a clean global environment.
-
+Define the variables referenced in `.expr`.
 ```{r}
 a = 1
 b = 2
+```
+
+For each row in `.expr`, `eply()` evaluates the expressions and feeds the results to `.fun`.
+
+```{r}
 eply(.fun, .expr)
 ```
 
 # Function `evals()`
 
-`evals()` evaluates a character vector of expressions.
+`evals()` evaluates a character vector of quoted expressions.
 
 ```{r}
 evals(c("1+1", "2+2", "3+3"))
 evals(c("1+1", "2+2", "3+3"), .simplify = FALSE)
-evals(c("subset(mtcars, cyl == a, mpg, TRUE)", "mtcars[1:2, 1:2]"), 
-      .with = list(a = 4))
+a = 4
+evals(c("subset(mtcars, cyl == a, mpg, TRUE)", "mtcars[1:2, 1:2]"))
 ```
+
+# Control the evaluation environment
+
+Use the `.with` argument to control the environment in which the expressions are evaluated. `.with` can be a list, data frame, or environment. Data in the calling environment may be used as well, so take care to avoid ambiguities. 
+
+```{r}
+.fun = function(x) return(x)
+.expr = data.frame(x = c("1+a", "1+b"))
+rownames(.expr) = c("expr1", "expr2")
+a = b = 0
+.with = list(a = 1, b = 2)
+eply(.fun, .expr, .with)
+evals(.expr$x, .with)
+```
+
+The `.with` argument is especially important if you wish to pass `eply()` or `evals()` to an iteration function like `lapply()`.
+
+```{r}
+.expr2 = split(.expr, f = .expr$x) # list of rows of .expr
+lapply(.expr2, eply, .fun = .fun, .with = .with)
+lapply(c("1+X", "2+Y"), evals, .with = list(X = 1, Y = 2))
+```
+
 
 # Parallel execution
 
-Eply does not implement any special parallel computing functionality. 
-However, you can use the [`plyr`](http://seananderson.ca/2013/12/01/plyr.html)
+Eply does not implement any special parallel computing functionality. However, the `parallel` package may be used on non-Windows machines to distribute the rows of `.expr` across parallel processes.
+
+```{r, eval = F}
+library(parallel)
+.fun = function(x) return(x)
+.expr = data.frame(x = c("1+a", "1+b"))
+.expr2 = split(.expr, f = .expr$x) # list of rows of .expr
+.with = list(a = 1, b = 2)
+mclapply(.expr2, eply, .fun = .fun, .with = .with, mc.cores = 2)
+```
+
+The parallelization of `evals()` with `mclapply()` is similar. For an alternative, consider the [`plyr`](http://seananderson.ca/2013/12/01/plyr.html)
 package to parallelize `eply()` over chunks of `.expr`. See the
-["Parallel processing"](http://seananderson.ca/2013/12/01/plyr.html#parallel-processing)
-section of the linked guide.
+["Parallel processing"](http://seananderson.ca/2013/12/01/plyr.html#parallel-processing) section of the linked guide.
 
 
-# Functions `quotes()` and `unquote()`
+# Character vector manipulation
 
-If you want some expressions to actually be strings, use `quotes()`.
+If you want some quoted expressions to evaluate to character strings, enclosed them with literal escaped quotes.
 
 ```{r}
 .expr = data.frame(
@@ -85,14 +110,23 @@ If you want some expressions to actually be strings, use `quotes()`.
 eply(.fun, .expr, .with)
 ```
 
+You can use single or double quotes.
+
+```{r}
+quotes(c("x", "y"))
+quotes(c("x", "y"), single = FALSE)
+quotes(c("x", "y"), single = TRUE)
+```
+
 Undo with `unquote()`.
 
 ```{r}
 .expr$string = unquote(.expr$string)
 .expr
+x = quotes(quotes(c("x", "y"), single = TRUE))
+x
+unquote(x)
 ```
-
-# Function `strings()`
 
 Turn valid expressions into strings with `strings()`.
 
