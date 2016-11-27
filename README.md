@@ -5,8 +5,7 @@
 [![codecov.io](https://codecov.io/github/wlandau/eply/coverage.svg?branch=master)](https://codecov.io/github/wlandau/eply?branch=master)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/eply)](http://cran.r-project.org/package=eply)
 
-`eply()` applies a function over a data frame of expressions.
-
+The `eply` package processes batches of quoted expressions. Just as `apply()` acts on data frames of function arguments, `eply()` acts on data frames of quoted **expressions** that **return** arguments. The package also has `evals()`, which simply evaluates a character vector of quoted expressions, plus some nice utilities.
 
 # Installation
 
