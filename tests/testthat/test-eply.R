@@ -17,7 +17,13 @@ test_that("Function eply uses .with correctly.", {
   d = data.frame(x = letters[1:2])
   expect_error(eply(f, d))
   expect_error(eply(f, d, .with = list(b = 2)))
-  a = b = 1
+  a = b = 0
+  expect_equal(unname(eply(f, d)), c(0,0))
+  tf = function(){
+    a = b = 5
+    unname(eply(f, d))
+  }
+  expect_equal(tf(), c(5,5))
   k = list(a = 3, b = 4)
   o = 3:4
   names(o) = rownames(d)
@@ -28,6 +34,8 @@ test_that("Function eply uses .with correctly.", {
   o = 5:6
   names(o) = rownames(d)
   expect_equal(eply(f, d, .with = e), o)
+  df = data.frame(a = 7, b = 7)
+  expect_equal(unname(eply(f, d, .with = df)), c(7, 7))
 })
 
 test_that("Function eply gives correct answers.", {

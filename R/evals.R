@@ -8,9 +8,10 @@
 #' data accessible to the expressions in \code{x}
 #' @param .simplify \code{TRUE} to simplify the result
 #' and \code{FALSE} otherwise 
-evals = function(x = NULL, .with = environment(), .simplify = TRUE){
+evals = function(x = NULL, .with = parent.frame(), .simplify = TRUE){
   if(!length(x)) return()
   checks_evals(.with = .with, .simplify = .simplify)
+  force(.with)
   out = vevals(x, .with = .with)
   names(out) = x
   if(.simplify) out = simplify2array(out)
@@ -18,6 +19,6 @@ evals = function(x = NULL, .with = environment(), .simplify = TRUE){
 }
 
 # evals but with no names
-vevals = Vectorize(FUN = function(x, .with = environment()){
+vevals = Vectorize(FUN = function(x, .with){
    eval(parse(text = as.character(x)), envir = .with)
 }, vectorize.arg = "x", SIMPLIFY = FALSE, USE.NAMES = TRUE)

@@ -21,8 +21,9 @@
 #' contain the argument names of \code{.fun}.
 #' @param .with list, data frame, or environment with the
 #' data accessible to \code{.expr}
-eply = function(.fun, .expr, .with = environment()){
+eply = function(.fun, .expr, .with = parent.frame()){
   checks_eply(.fun = .fun, .expr = .expr, .with = .with)
+  force(.with)
   subset(.expr, select = formalArgs(.fun)) %>%
   apply(1, function(x){
     .args = vevals(x, .with = .with)

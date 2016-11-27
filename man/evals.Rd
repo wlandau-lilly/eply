@@ -4,7 +4,7 @@
 \alias{evals}
 \title{Function \code{evals}}
 \usage{
-evals(x = NULL, .with = environment(), .simplify = TRUE)
+evals(x = NULL, .with = parent.frame(), .simplify = TRUE)
 }
 \arguments{
 \item{x}{character vector of expressions to evaluate}

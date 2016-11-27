@@ -4,7 +4,7 @@
 \alias{eply}
 \title{Function \code{eply}}
 \usage{
-eply(.fun, .expr, .with = environment())
+eply(.fun, .expr, .with = parent.frame())
 }
 \arguments{
 \item{.fun}{function to evaluate.}
