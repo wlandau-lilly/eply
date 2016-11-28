@@ -20,8 +20,15 @@ quotes = function(x = NULL, single = FALSE){
 #' @export
 #' @return character vector without leading or trailing escaped quotes around it
 #' @param x character vector
-unquote = function(x = NULL){
-  gsub("^[\"']*|[\"']*$", "", x)
+#' @param deep remove all outer quotes if \code{TRUE} 
+#' and only the outermost set otherwise. Single and double
+#' quotes are treated interchangeably, and matching is not checked.
+unquote = function(x = NULL, deep = FALSE){
+  if(deep){
+    gsub("^[\"']*|[\"']*$", "", x)
+  } else {
+    gsub("^[\"']|[\"']$", "", x)
+  }
 }
 
 

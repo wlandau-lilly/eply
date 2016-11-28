@@ -125,7 +125,8 @@ Undo with `unquote()`.
 .expr
 x = quotes(quotes(c("x", "y"), single = TRUE))
 x
-unquote(x)
+unquote(x, deep = TRUE)
+unquote(x, deep = FALSE)
 ```
 
 Turn valid expressions into strings with `strings()`.

@@ -6,16 +6,23 @@ test_that("Functions quotes() and unquote() are correct.", {
   expect_equal(quotes(c("x", "y")), c("\"x\"", "\"y\""))
   expect_equal(quotes(c("x", "y"), single = F), c("\"x\"", "\"y\""))
   expect_equal(quotes(c("x", "y"), single = T), c("\'x\'", "\'y\'"))
-  expect_equal(unquote(quotes(quotes(quotes(c("x", "y")), single = T), 
+  expect_equal(unquote(deep = TRUE, x = quotes(quotes(quotes(c("x", "y")), single = T), 
     single = F)), c("x", "y"))
 
   expect_equal(unquote(), character(0))
   expect_equal(quotes(strings(x, y)), c("\"x\"", "\"y\""))
+  
+
   a = c("\"x\"", "\"y\"", "return(a)", "return(\"a\")", "\"x", "y\"", "\"x\"", "\"return(\"a\")\"")
   b = c("x", "y", "return(a)", "return(\"a\")", "x", "y", "x", "return(\"a\")")
   expect_equal(unquote(a), b)
-  expect_equal(unquote(quotes(a)), b)
-  expect_equal(unquote(quotes(b)), b)
+
+  x = c("'x'", '"y"', "\"'x'\"", "'\"y\"'")
+  y = c("x", "y", "'x'", "\"y\"")
+  z = c("x", "y", "x", "y")
+  expect_equal(unquote(x), y)
+  expect_equal(unquote(x, deep = F), y)
+  expect_equal(unquote(x, deep = T), z)
 })
 
 test_that("Function strings() is correct.", {
