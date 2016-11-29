@@ -80,15 +80,15 @@ lapply(c("1+X", "2+Y"), evals, .with = list(X = 1, Y = 2))
 
 # Parallel execution
 
-Eply does not implement any special parallel computing functionality. However, the `parallel` package may be used on non-Windows machines to distribute the rows of `.expr` across parallel processes.
+Eply does not implement any special parallel computing functionality. However, the `parallel` package may be used on non-Windows machines to distribute subsets of `.expr` across parallel processes. The output of `parallel::mclapply()` is a list, so take care to simplify if necessary (say, to a data frame).
 
 ```{r, eval = F}
 library(parallel)
-.fun = function(x) return(x)
-.expr = data.frame(x = c("1+a", "1+b"))
-.expr2 = split(.expr, f = .expr$x) # list of rows of .expr
-.with = list(a = 1, b = 2)
-mclapply(.expr2, eply, .fun = .fun, .with = .with, mc.cores = 2)
+.fun = example.fun
+expr.dataframe = example.expr()
+expr.list = split(expr.dataframe, f = expr.dataframe$rep) # split expr.dataframe by rep
+.with = example.with()
+mclapply(X = expr.list, FUN = eply, .fun = .fun, .with = .with, mc.cores = 2)
 ```
 
 The parallelization of `evals()` with `mclapply()` is similar. For an alternative, consider the [`plyr`](http://seananderson.ca/2013/12/01/plyr.html)
