@@ -1,7 +1,7 @@
 Package: eply
 Type: Package
 Title: Apply a Function Over Expressions
-Version: 0.1.0
+Version: 0.1.0.9000
 Date: 2016-11-19
 Authors@R: c(
     person(given = c("William", "Michael"), family = "Landau", 
