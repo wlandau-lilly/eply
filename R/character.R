@@ -31,7 +31,6 @@ unquote = function(x = NULL, deep = FALSE){
   }
 }
 
-
 #' @title Function \code{strings}
 #' @description Turn valid expressions into character strings.
 #' @seealso \code{\link{eply}}
