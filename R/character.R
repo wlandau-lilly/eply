@@ -1,6 +1,7 @@
 #' @title Function \code{quotes}
 #' @description Put quotes around each element of a character vector.
-#' @seealso \code{\link{eply}}
+#' @seealso \code{\link{unquote}}, \code{\link{strings}},
+#' \code{\link{eply}}, \code{\link{help_eply}}
 #' @export
 #' @return character vector with quotes around it
 #' @param x character vector or object to be coerced to character.
@@ -16,7 +17,8 @@ quotes = function(x = NULL, single = FALSE){
 
 #' @title Function \code{unquote}
 #' @description Remove leading and trailing escaped quotes from character strings.
-#' @seealso \code{\link{eply}}
+#' @seealso \code{\link{quotes}}, \code{\link{strings}},
+#' \code{\link{eply}}, \code{\link{help_eply}}
 #' @export
 #' @return character vector without leading or trailing escaped quotes around it
 #' @param x character vector
@@ -33,7 +35,8 @@ unquote = function(x = NULL, deep = FALSE){
 
 #' @title Function \code{strings}
 #' @description Turn valid expressions into character strings.
-#' @seealso \code{\link{eply}}
+#' @seealso \code{\link{quotes}}, \code{\link{unquote}},
+#' \code{\link{eply}}, \code{\link{help_eply}}
 #' @export 
 #' @return a character vector
 #' @param ... unquoted symbols to turn into character strings.

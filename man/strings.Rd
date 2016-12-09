@@ -16,6 +16,7 @@ a character vector
 Turn valid expressions into character strings.
 }
 \seealso{
-\code{\link{eply}}
+\code{\link{quotes}}, \code{\link{unquote}},
+\code{\link{eply}}, \code{\link{help_eply}}
 }
 

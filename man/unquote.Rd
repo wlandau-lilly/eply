@@ -20,6 +20,7 @@ character vector without leading or trailing escaped quotes around it
 Remove leading and trailing escaped quotes from character strings.
 }
 \seealso{
-\code{\link{eply}}
+\code{\link{quotes}}, \code{\link{strings}},
+\code{\link{eply}}, \code{\link{help_eply}}
 }
 

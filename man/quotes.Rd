@@ -18,6 +18,7 @@ character vector with quotes around it
 Put quotes around each element of a character vector.
 }
 \seealso{
-\code{\link{eply}}
+\code{\link{unquote}}, \code{\link{strings}},
+\code{\link{eply}}, \code{\link{help_eply}}
 }
 
