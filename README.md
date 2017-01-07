@@ -36,7 +36,7 @@ devtools::install_local("eply", build = TRUE)
 
 # Tutorial
 
-The [online package vignette](http://will-landau.com/eply/articles/eply.html) has a complete tutorial. You can the load the compiled version from an R session.
+The [online package vignette](https://CRAN.R-project.org/package=eply/vignettes/eply.html) has a complete tutorial. You can the load the compiled version from an R session.
 
 ```r
 vignette("eply")
