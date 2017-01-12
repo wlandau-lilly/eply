@@ -1,3 +1,3 @@
-# 2016-11-20
+# 2017-12-1
 
-This package is not yet on CRAN.
+Version 0.1.0 will be the first submission to CRAN.
