@@ -8,7 +8,7 @@ Authors@R: c(
       email = "will.landau@lilly.com", role = c("aut", "cre")),
     person(family = "Eli Lilly and Company", role = "cph"))
 Description: Evaluate a function over a data frame of expressions.
-License: GPL (>= 3)
+License: GPL-3
 Depends: R (>= 3.0.0)
 Imports:
     magrittr,
