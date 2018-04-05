@@ -12,4 +12,3 @@ Prints links for tutorials, troubleshooting, bug reports, etc.
 \seealso{
 \code{\link{eply}}
 }
-

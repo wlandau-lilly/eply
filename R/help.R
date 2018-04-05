@@ -10,8 +10,8 @@ help_eply = function(){
 #    "The vignette of the development version has a full tutorial at the webpage below.",
 #    "    http://will-landau.com/eply/articles/eply.html",
     "For troubleshooting, navigate to the link below.",
-    "    https://github.com/wlandau-lilly/eply/blob/master/TROUBLESHOOTING.md",
+    "    https://github.com/wlandau/eply/blob/master/TROUBLESHOOTING.md",
     "To submit bug reports, usage questions, feature requests, etc., navigate to the link below.",
-    "    https://github.com/wlandau/eply-lilly/issues",
+    "    https://github.com/wlandau/eply/issues",
   sep = "\n")
 }

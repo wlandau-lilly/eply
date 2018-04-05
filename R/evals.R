@@ -21,4 +21,4 @@ evals = function(x = NULL, .with = parent.frame(), .simplify = TRUE){
 # evals but with no names
 vevals = Vectorize(FUN = function(x, .with){
    eval(parse(text = as.character(x)), envir = .with)
-}, vectorize.arg = "x", SIMPLIFY = FALSE, USE.NAMES = TRUE)
+}, vectorize.args = "x", SIMPLIFY = FALSE, USE.NAMES = TRUE)

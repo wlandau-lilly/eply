@@ -13,7 +13,7 @@
 #' The column names of \code{.expr} must
 #' contain the argument names of \code{.fun}.
 #' With \code{.tasks} and \code{.split}, Mac and Linux users can 
-#' distribute the work over multple parallel tasks. See the vignette for an 
+#' distribute the work over multiple parallel tasks. See the vignette for an 
 #' example (\code{vignette("eply")}).
 #' @return a list or vector of return values of \code{.fun}.
 #' @param .fun function to evaluate.

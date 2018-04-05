@@ -24,4 +24,3 @@ Evaluate a character vector as a bunch of expressions.
 \seealso{
 \code{\link{eply}}, \code{\link{help_eply}}
 }
-

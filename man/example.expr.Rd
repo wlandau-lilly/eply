@@ -15,4 +15,3 @@ Return example \code{.expr} argument for \code{\link{eply}}.
 \seealso{
 \code{\link{eply}}
 }
-

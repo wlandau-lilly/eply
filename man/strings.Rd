@@ -19,4 +19,3 @@ Turn valid expressions into character strings.
 \code{\link{quotes}}, \code{\link{unquote}},
 \code{\link{eply}}, \code{\link{help_eply}}
 }
-

@@ -7,12 +7,11 @@
 example.with()
 }
 \value{
-example \code{.with} argument ofr \code{\link{eply}}
+example \code{.with} argument of \code{\link{eply}}
 }
 \description{
-Return example \code{.with} argument ofr \code{\link{eply}}.
+Return example \code{.with} argument of \code{\link{eply}}.
 }
 \seealso{
 \code{\link{eply}}
 }
-

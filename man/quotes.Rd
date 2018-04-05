@@ -21,4 +21,3 @@ Put quotes around each element of a character vector.
 \code{\link{unquote}}, \code{\link{strings}},
 \code{\link{eply}}, \code{\link{help_eply}}
 }
-

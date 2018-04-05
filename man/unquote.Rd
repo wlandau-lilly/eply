@@ -23,4 +23,3 @@ Remove leading and trailing escaped quotes from character strings.
 \code{\link{quotes}}, \code{\link{strings}},
 \code{\link{eply}}, \code{\link{help_eply}}
 }
-

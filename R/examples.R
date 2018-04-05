@@ -24,10 +24,10 @@ example.fun = function(x, y){
 }
 
 #' @title \code{example.with}
-#' @description Return example \code{.with} argument ofr \code{\link{eply}}.
+#' @description Return example \code{.with} argument of \code{\link{eply}}.
 #' @seealso \code{\link{eply}}
 #' @export
-#' @return example \code{.with} argument ofr \code{\link{eply}}
+#' @return example \code{.with} argument of \code{\link{eply}}
 example.with = function(){
   list(a = 1, b = 2)
 }

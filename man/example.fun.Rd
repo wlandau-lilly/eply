@@ -20,4 +20,3 @@ Example \code{.fun} argument to \code{\link{eply}}.
 \seealso{
 \code{\link{eply}}
 }
-
