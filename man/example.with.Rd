@@ -12,6 +12,11 @@ example \code{.with} argument of \code{\link{eply}}
 \description{
 Return example \code{.with} argument of \code{\link{eply}}.
 }
+\examples{
+#' Get an example .with argument to eply() and evals().
+#' See the examples of the eply() and evals() functions for usage.
+example.with()
+}
 \seealso{
 \code{\link{eply}}
 }

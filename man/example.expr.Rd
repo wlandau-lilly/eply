@@ -12,6 +12,11 @@ Example \code{.expr} argument to \code{\link{eply}}.
 \description{
 Return example \code{.expr} argument for \code{\link{eply}}.
 }
+\examples{
+#' Get an example .expr argument to eply().
+#' See the examples of the eply() function for usage.
+example.expr()
+}
 \seealso{
 \code{\link{eply}}
 }

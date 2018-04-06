@@ -17,6 +17,12 @@ Example \code{.fun} argument to \code{\link{eply}}.
 \description{
 Example \code{.fun} argument to \code{\link{eply}}.
 }
+\examples{
+#' Get an example .fun argument to eply().
+#' See the examples of the eply() function for usage.
+example.fun
+example.fun(x = c(4, 2), y = c(2, 2))
+}
 \seealso{
 \code{\link{eply}}
 }

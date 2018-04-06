@@ -9,6 +9,7 @@
 .DS_Store
 .git
 .gitignore
+.lintr
 .Rapp.history
 .Rbuildignore
 .Rhistory

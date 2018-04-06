@@ -91,7 +91,7 @@ expr.list = split(expr.dataframe, f = expr.dataframe$rep) # split expr.dataframe
 mclapply(X = expr.list, FUN = eply, .fun = .fun, .with = .with, mc.cores = 2)
 ```
 
-The parallelization of `evals()` with `mclapply()` is similar. For an alternative, consider the [`plyr`](http://seananderson.ca/2013/12/01/plyr.html)
+The parallel execution of `evals()` with `mclapply()` is similar. For an alternative, consider the [`plyr`](http://seananderson.ca/2013/12/01/plyr.html)
 package to parallelize `eply()` over chunks of `.expr`. See the
 ["Parallel processing"](http://seananderson.ca/2013/12/01/plyr.html#parallel-processing) section of the linked guide.
 

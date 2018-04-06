@@ -23,18 +23,27 @@ Apply a function over a data frame of quoted expressions.
 Parallel execution is available using the \code{.split} and \code{.tasks} arguments.
 }
 \details{
-\code{.fun} is a function, and \code{.expr} is a data frame. 
+\code{.fun} is a function, and \code{.expr} is a data frame.
 In \code{.expr}, each row stands for a single call to \code{.fun}, and each
-column stamds for an argument. Each element is a quoted expression that 
+column stands for an argument. Each element is a quoted expression that
 uses the data in \code{.with} during evaluation.
-When \code{\link{eply}} is called on each row, the expressions 
-are evaluated on \code{.with}, 
-and the results are given to \code{.fun} as function arguments. 
+When \code{\link{eply}} is called on each row, the expressions
+are evaluated on \code{.with},
+and the results are given to \code{.fun} as function arguments.
 The column names of \code{.expr} must
 contain the argument names of \code{.fun}.
-With \code{.tasks} and \code{.split}, Mac and Linux users can 
-distribute the work over multiple parallel tasks. See the vignette for an 
+With \code{.tasks} and \code{.split}, Mac and Linux users can
+distribute the work over multiple parallel tasks. See the vignette for an
 example (\code{vignette("eply")}).
+}
+\examples{
+# Get an example data frame of commands that evaluate to function arguments.
+.expr <- example.expr()
+.fun <- example.fun # Get an example collection of functions.
+# Get an example list of supporting data. Could be an environment.
+.with <- example.with()
+# Row-by-row, evaluate the code in .expr and feed the results to the function.
+eply(.fun = .fun, .expr = .expr, .with = .with)
 }
 \seealso{
 \code{\link{evals}}, \code{\link{help_eply}}

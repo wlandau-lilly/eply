@@ -21,6 +21,12 @@ a list or vector of return values of \code{.fun}.
 \description{
 Evaluate a character vector as a bunch of expressions.
 }
+\examples{
+# Get an example list of supporting data. Could be an environment.
+.with <- example.with()
+# Row-by-row, evaluate the code in .expr and feed the results to the function.
+evals(x = c("a + 1", "b + 2"), .with = .with)
+}
 \seealso{
 \code{\link{eply}}, \code{\link{help_eply}}
 }

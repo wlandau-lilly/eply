@@ -9,7 +9,7 @@ unquote(x = NULL, deep = FALSE)
 \arguments{
 \item{x}{character vector}
 
-\item{deep}{remove all outer quotes if \code{TRUE} 
+\item{deep}{remove all outer quotes if \code{TRUE}
 and only the outermost set otherwise. Single and double
 quotes are treated interchangeably, and matching is not checked.}
 }
@@ -18,6 +18,11 @@ character vector without leading or trailing escaped quotes around it
 }
 \description{
 Remove leading and trailing escaped quotes from character strings.
+}
+\examples{
+unquote(c("x", "'y'", "\\"why\\"", "'''z'''"))
+unquote(c("x", "'y'", "\\"why\\"", "'''z'''"), deep = FALSE)
+unquote(c("x", "'y'", "\\"why\\"", "'''z'''"), deep = TRUE)
 }
 \seealso{
 \code{\link{quotes}}, \code{\link{strings}},

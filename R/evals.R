@@ -7,18 +7,28 @@
 #' @param .with list, data frame, or environment with the
 #' data accessible to the expressions in \code{x}
 #' @param .simplify \code{TRUE} to simplify the result
-#' and \code{FALSE} otherwise 
-evals = function(x = NULL, .with = parent.frame(), .simplify = TRUE){
-  if(!length(x)) return()
+#' and \code{FALSE} otherwise
+#' @examples
+#' # Get an example list of supporting data. Could be an environment.
+#' .with <- example.with()
+#' # Row-by-row, evaluate the code in .expr and feed the results to the function.
+#' evals(x = c("a + 1", "b + 2"), .with = .with)
+evals <- function(x = NULL, .with = parent.frame(), .simplify = TRUE) {
+  if (!length(x)) return()
   checks_evals(.with = .with, .simplify = .simplify)
   force(.with)
-  out = vevals(x, .with = .with)
-  names(out) = x
-  if(.simplify) out = simplify2array(out)
+  out <- vevals(x, .with = .with)
+  names(out) <- x
+  if (.simplify) out <- simplify2array(out)
   out
 }
 
 # evals but with no names
-vevals = Vectorize(FUN = function(x, .with){
-   eval(parse(text = as.character(x)), envir = .with)
-}, vectorize.args = "x", SIMPLIFY = FALSE, USE.NAMES = TRUE)
+vevals <- Vectorize(
+  FUN = function(x, .with) {
+    eval(parse(text = as.character(x)), envir = .with)
+  },
+  vectorize.args = "x",
+  SIMPLIFY = FALSE,
+  USE.NAMES = TRUE
+)
