@@ -1,7 +1,7 @@
 context("lapply")
 
 test_that("eply and evals can be passed to functions like lapply", {
-  e <- split(example.expr(), f = 1:nrow(example.expr()))
+  e <- split(example.expr(), f = seq_len(nrow(example.expr())))
   expect_silent(o <- lapply(e, eply,
     .fun = example.fun, .with = example.with()
   ))
