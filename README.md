@@ -1,5 +1,10 @@
+# purrr is better!
+
+[`purrr`](https://github.com/tidyverse/purrr) is a much better package for this use case than `eply`. Please use [`purrr`](https://github.com/tidyverse/purrr).
+
 # eply
 
+[![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
 [![Travis-CI Build Status](https://travis-ci.org/wlandau/eply.svg?branch=master)](https://travis-ci.org/wlandau/eply)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/wlandau/eply?branch=master&svg=true)](https://ci.appveyor.com/project/wlandau/eply)
 [![codecov.io](https://codecov.io/github/wlandau/eply/coverage.svg?branch=master)](https://codecov.io/github/wlandau/eply?branch=master)
