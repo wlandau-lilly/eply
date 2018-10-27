@@ -5,12 +5,6 @@
 # eply
 
 [![Project Status: Inactive – The project has reached a stable, usable state but is no longer being actively developed; support/maintenance will be provided as time allows.](https://www.repostatus.org/badges/latest/inactive.svg)](https://www.repostatus.org/#inactive)
-[![Travis-CI Build Status](https://travis-ci.org/wlandau/eply.svg?branch=master)](https://travis-ci.org/wlandau/eply)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/wlandau/eply?branch=master&svg=true)](https://ci.appveyor.com/project/wlandau/eply)
-[![codecov.io](https://codecov.io/github/wlandau/eply/coverage.svg?branch=master)](https://codecov.io/github/wlandau/eply?branch=master)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/eply)](http://cran.r-project.org/package=eply)
-[![Licence](https://img.shields.io/badge/licence-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0.en.html)
-[![minimal R version](https://img.shields.io/badge/R%3E%3D-3.0.0-6666ff.svg)](https://cran.r-project.org/)
 
 The `eply` package processes batches of quoted expressions. Just as `apply()` acts on data frames of function arguments, `eply()` acts on data frames of quoted **expressions** that **return** arguments. The package also has `evals()`, which simply evaluates a character vector of quoted expressions, plus some nice utilities.
 
